@@ -1,15 +1,12 @@
 import Foundation
-internal import Combine
 
 @MainActor
 final class LocalStore: ObservableObject {
-    var objectWillChange: ObservableObjectPublisher
-    
-    @Published var services: [PayService]
-    @Published var products: [TicketProduct]
-    @Published var cards: [PaymentCard]
-    @Published var transactions: [Transaction]
-    @Published var tickets: [Ticket]
+    @Published var services: [PayService] = []
+    @Published var products: [TicketProduct] = []
+    @Published var cards: [PaymentCard] = []
+    @Published var transactions: [Transaction] = []
+    @Published var tickets: [Ticket] = []
 
     private let encoder: JSONEncoder
     private let decoder: JSONDecoder
