@@ -6,20 +6,14 @@ struct AuthenticationView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            StaticAppIcon()
-                .frame(width: 150, height: 150)
-                .padding(.top, 8)
-                .zIndex(2)
+            Spacer()
 
             pinCard
                 .padding(.horizontal, 18)
-                .offset(y: -42)
 
-            faceIDSection
-                .offset(y: -18)
+            Spacer()
 
             contactSection
-                .offset(y: -5)
 
             Spacer(minLength: 0)
 
@@ -49,8 +43,7 @@ struct AuthenticationView: View {
                     .font(.system(size: 42, weight: .light))
                     .foregroundStyle(.white)
             }
-            .offset(y: -47)
-            .padding(.bottom, -39)
+            .padding(.top, 20)
 
             Text("Bun venit! Introdu codul PIN")
                 .font(.system(size: 23, weight: .regular))
@@ -77,26 +70,6 @@ struct AuthenticationView: View {
         .frame(maxWidth: .infinity)
         .background(AppTheme.Color.surface)
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
-    }
-
-    private var faceIDSection: some View {
-        VStack(spacing: 13) {
-            Text("Autentificare cu")
-                .font(.system(size: 26, weight: .regular))
-                .foregroundStyle(.white)
-
-            Button {
-                viewModel.authenticateWithFaceID()
-            } label: {
-                Image(systemName: "faceid")
-                    .font(.system(size: 60, weight: .regular))
-                    .foregroundStyle(.black)
-                    .frame(width: 82, height: 82)
-                    .background(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-            }
-            .buttonStyle(.plain)
-        }
     }
 
     private var contactSection: some View {
@@ -154,32 +127,4 @@ struct AuthenticationView: View {
     }
 }
 
-struct StaticAppIcon: View {
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 47, style: .continuous)
-                .fill(.black)
-
-            ZStack {
-                Path { path in
-                    path.move(to: CGPoint(x: 30, y: 104))
-                    path.addLine(to: CGPoint(x: 74, y: 42))
-                    path.addLine(to: CGPoint(x: 121, y: 104))
-                    path.closeSubpath()
-                }
-                .fill(LinearGradient(colors: [Color(red: 0.0, green: 0.9, blue: 0.28), Color(red: 0.0, green: 0.34, blue: 0.14)], startPoint: .top, endPoint: .bottom))
-
-                Path { path in
-                    path.move(to: CGPoint(x: 47, y: 104))
-                    path.addLine(to: CGPoint(x: 80, y: 67))
-                    path.addLine(to: CGPoint(x: 109, y: 104))
-                    path.closeSubpath()
-                }
-                .stroke(Color(red: 0.22, green: 1.0, blue: 0.46), lineWidth: 2)
-                .opacity(0.55)
-            }
-            .frame(width: 150, height: 150)
-        }
-    }
-}
 
