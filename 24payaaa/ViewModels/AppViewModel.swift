@@ -22,11 +22,14 @@ final class AppViewModel: ObservableObject {
         self.store = store
     }
 
+    private func completeAuthentication() {
+        selectedTab = .home
+        isAuthenticated = true
+    }
+
     func authenticateWithPin() {
         guard enteredPin.count == 4 else { return }
-        withAnimation(.spring(response: 0.35, dampingFraction: 0.85)) {
-            isAuthenticated = true
-        }
+        completeAuthentication()
     }
 
     func appendPin(_ digit: String) {
@@ -44,16 +47,12 @@ final class AppViewModel: ObservableObject {
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Autentificare 24pay") { [weak self] success, _ in
                 Task { @MainActor [weak self, success] in
                     if success {
-                        withAnimation(.spring(response: 0.35, dampingFraction: 0.82)) {
-                            self?.isAuthenticated = true
-                        }
+                        self?.completeAuthentication()
                     }
                 }
             }
         } else {
-            withAnimation(.spring(response: 0.35, dampingFraction: 0.82)) {
-                isAuthenticated = true
-            }
+            completeAuthentication()
         }
     }
 

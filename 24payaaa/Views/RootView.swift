@@ -9,14 +9,11 @@ struct RootView: View {
                 MainTabView()
                     .environmentObject(viewModel)
                     .environmentObject(viewModel.store)
-                    .transition(.opacity.combined(with: .scale(scale: 0.98)))
             } else {
                 AuthenticationView()
                     .environmentObject(viewModel)
-                    .transition(.opacity)
             }
         }
-        .animation(.easeInOut(duration: 0.25), value: viewModel.isAuthenticated)
     }
 }
 
@@ -58,4 +55,3 @@ struct MainTabView: View {
 #Preview {
     RootView()
 }
-
