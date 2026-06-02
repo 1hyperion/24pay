@@ -1,9 +1,9 @@
 import Foundation
-internal import Combine
+import Combine
 
 @MainActor
 final class LocalStore: ObservableObject {
-    var objectWillChange: ObservableObjectPublisher
+    let objectWillChange = ObservableObjectPublisher()
     
     @Published var services: [PayService] = []
     @Published var products: [TicketProduct] = []

@@ -1,11 +1,11 @@
 import Foundation
+import Combine
 import LocalAuthentication
 import SwiftUI
-internal import Combine
 
 @MainActor
 final class AppViewModel: ObservableObject {
-    var objectWillChange: ObservableObjectPublisher
+    let objectWillChange = ObservableObjectPublisher()
     
     @Published var selectedTab: AppTab = .home
     @Published var isAuthenticated = false
