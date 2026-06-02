@@ -2,25 +2,18 @@ import SwiftUI
 
 struct AuthenticationView: View {
     @EnvironmentObject private var viewModel: AppViewModel
-    @State private var requestedFaceID = false
     private let keypad = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0", "⌫"]
 
     var body: some View {
         VStack(spacing: 0) {
-            StaticLoginIcon()
-                .frame(width: 150, height: 150)
-                .padding(.top, 8)
-                .zIndex(2)
+            Spacer()
 
             pinCard
                 .padding(.horizontal, 18)
-                .offset(y: -42)
 
-            faceIDSection
-                .offset(y: -18)
+            Spacer()
 
             contactSection
-                .offset(y: -5)
 
             Spacer(minLength: 0)
 
@@ -32,8 +25,6 @@ struct AuthenticationView: View {
         }
         .appBackground()
         .onAppear {
-            guard !requestedFaceID else { return }
-            requestedFaceID = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
                 viewModel.authenticateWithFaceID()
             }
@@ -42,23 +33,10 @@ struct AuthenticationView: View {
 
     private var pinCard: some View {
         VStack(spacing: 15) {
-            ZStack {
-                Circle()
-                    .stroke(.white.opacity(0.78), lineWidth: 1.2)
-                    .frame(width: 86, height: 86)
-                    .background(Circle().fill(AppTheme.Color.surface.opacity(0.94)))
-
-                Image(systemName: "person")
-                    .font(.system(size: 42, weight: .light))
-                    .foregroundStyle(.white)
-            }
-            .offset(y: -47)
-            .padding(.bottom, -39)
-
             Text("Bun venit! Introdu codul PIN")
                 .font(.system(size: 23, weight: .regular))
                 .foregroundStyle(.white)
-                .padding(.top, 3)
+                .padding(.top, 24)
 
             HStack(spacing: 23) {
                 ForEach(0..<4, id: \.self) { index in
@@ -80,26 +58,6 @@ struct AuthenticationView: View {
         .frame(maxWidth: .infinity)
         .background(AppTheme.Color.surface)
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
-    }
-
-    private var faceIDSection: some View {
-        VStack(spacing: 13) {
-            Text("Autentificare cu")
-                .font(.system(size: 26, weight: .regular))
-                .foregroundStyle(.white)
-
-            Button {
-                viewModel.authenticateWithFaceID()
-            } label: {
-                Image(systemName: "faceid")
-                    .font(.system(size: 60, weight: .regular))
-                    .foregroundStyle(.black)
-                    .frame(width: 82, height: 82)
-                    .background(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-            }
-            .buttonStyle(.plain)
-        }
     }
 
     private var contactSection: some View {
@@ -156,21 +114,3 @@ struct AuthenticationView: View {
         }
     }
 }
-
-private struct StaticLoginIcon: View {
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 47, style: .continuous)
-                .fill(.black)
-
-            Path { path in
-                path.move(to: CGPoint(x: 30, y: 104))
-                path.addLine(to: CGPoint(x: 74, y: 42))
-                path.addLine(to: CGPoint(x: 121, y: 104))
-                path.closeSubpath()
-            }
-            .fill(LinearGradient(colors: [Color(red: 0.0, green: 0.9, blue: 0.28), Color(red: 0.0, green: 0.34, blue: 0.14)], startPoint: .top, endPoint: .bottom))
-        }
-    }
-}
-

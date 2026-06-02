@@ -5,8 +5,6 @@ import SwiftUI
 
 @MainActor
 final class AppViewModel: ObservableObject {
-    let objectWillChange = ObservableObjectPublisher()
-    
     @Published var selectedTab: AppTab = .home
     @Published var isAuthenticated = false
     @Published var enteredPin = ""
