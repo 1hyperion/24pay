@@ -4,16 +4,19 @@ struct RootView: View {
     @StateObject private var viewModel = AppViewModel()
 
     var body: some View {
-        Group {
+        ZStack {
             if viewModel.isAuthenticated {
                 MainTabView()
                     .environmentObject(viewModel)
                     .environmentObject(viewModel.store)
+                    .transition(.opacity)
             } else {
                 AuthenticationView()
                     .environmentObject(viewModel)
+                    .transition(.opacity)
             }
         }
+        .animation(.easeInOut(duration: 0.5), value: viewModel.isAuthenticated)
     }
 }
 

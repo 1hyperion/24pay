@@ -23,7 +23,6 @@ final class AppViewModel: ObservableObject {
     }
 
     private func completeAuthentication() {
-        objectWillChange.send()
         selectedTab = .home
         isAuthenticated = true
     }
