@@ -9,19 +9,18 @@ struct AuthenticationView: View {
             Spacer()
 
             pinCard
-                .padding(.horizontal, 18)
+                .padding(.horizontal, AppTheme.Layout.horizontal)
 
             Spacer()
 
             contactSection
-
-            Spacer(minLength: 0)
+                .padding(.bottom, 28)
 
             hiddenPinPad
 
             authButton
-                .padding(.horizontal, 34)
-                .padding(.bottom, 34)
+                .padding(.horizontal, AppTheme.Layout.horizontal)
+                .padding(.bottom, 40)
         }
         .appBackground()
         .onAppear {
@@ -32,44 +31,46 @@ struct AuthenticationView: View {
     }
 
     private var pinCard: some View {
-        VStack(spacing: 15) {
-            Text("Bun venit! Introdu codul PIN")
-                .font(.system(size: 23, weight: .regular))
+        VStack(spacing: 20) {
+            Text("Bun venit!")
+                .font(AppTheme.Font.hero)
                 .foregroundStyle(.white)
-                .padding(.top, 24)
+                .padding(.top, 28)
 
-            HStack(spacing: 23) {
+            Text("Introdu codul PIN")
+                .font(AppTheme.Font.body)
+                .foregroundStyle(AppTheme.Color.muted)
+
+            HStack(spacing: 26) {
                 ForEach(0..<4, id: \.self) { index in
                     Circle()
-                        .stroke(AppTheme.Color.muted, lineWidth: 1.25)
+                        .stroke(AppTheme.Color.muted, lineWidth: 1.5)
                         .background(Circle().fill(index < viewModel.enteredPin.count ? AppTheme.Color.yellow : .clear))
-                        .frame(width: 25, height: 25)
+                        .frame(width: 28, height: 28)
                 }
             }
-            .padding(.top, 1)
+            .padding(.vertical, 8)
 
-            Button("Am uitat cod PIN") { }
-                .font(.system(size: 19, weight: .regular))
+            Button("Am uitat codul PIN") { }
+                .font(AppTheme.Font.body)
                 .foregroundStyle(AppTheme.Color.yellow)
-                .padding(.top, 3)
+                .padding(.bottom, 28)
         }
-        .padding(.horizontal, 14)
-        .padding(.bottom, 23)
         .frame(maxWidth: .infinity)
         .background(AppTheme.Color.surface)
-        .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
+        .clipShape(RoundedRectangle(cornerRadius: AppTheme.Layout.cardCorner, style: .continuous))
     }
 
     private var contactSection: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 8) {
             Text("Contact:")
-                .font(.system(size: 19, weight: .bold))
+                .font(AppTheme.Font.caption)
+                .foregroundStyle(AppTheme.Color.muted)
             Text("+40 721 102 424,  +40 753 300 151")
-                .font(.system(size: 18, weight: .regular))
+                .font(AppTheme.Font.caption)
+                .foregroundStyle(AppTheme.Color.yellow)
                 .underline()
         }
-        .foregroundStyle(AppTheme.Color.yellow)
-        .padding(.top, 23)
     }
 
     private var hiddenPinPad: some View {
@@ -88,14 +89,15 @@ struct AuthenticationView: View {
             viewModel.authenticateWithPin()
         } label: {
             Text("Autentificare")
-                .font(.system(size: 27, weight: .regular))
+                .font(AppTheme.Font.large)
                 .foregroundStyle(viewModel.enteredPin.count == 4 ? AppTheme.Color.background : AppTheme.Color.muted)
                 .frame(height: 64)
                 .frame(maxWidth: .infinity)
                 .background(viewModel.enteredPin.count == 4 ? AppTheme.Color.yellow : .clear)
+                .clipShape(RoundedRectangle(cornerRadius: AppTheme.Layout.corner, style: .continuous))
                 .overlay {
-                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        .stroke(AppTheme.Color.muted, lineWidth: 1.2)
+                    RoundedRectangle(cornerRadius: AppTheme.Layout.corner, style: .continuous)
+                        .stroke(AppTheme.Color.border, lineWidth: 1.2)
                 }
         }
         .buttonStyle(.plain)
@@ -109,8 +111,7 @@ struct AuthenticationView: View {
                 viewModel.appendPin(key)
             }
         } label: {
-            Text(key)
-                .frame(height: 1)
+            Text(key).frame(height: 1)
         }
     }
 }
