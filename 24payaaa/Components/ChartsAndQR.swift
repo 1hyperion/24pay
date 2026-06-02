@@ -4,7 +4,7 @@ import UIKit
 
 struct StatisticsChart: View {
     let values: [Double]
-    private let days = ["Mie.", "Joi", "Vin.", "Sâm.", "Dum.", "Lun.", "Mar."]
+    private let days = ["Mie.", "Joi", "Vin.", "S\u{00E2}m.", "Dum.", "Lun.", "Mar."]
 
     var body: some View {
         GeometryReader { proxy in
@@ -48,7 +48,7 @@ struct StatisticsChart: View {
                 .frame(width: width)
             }
         }
-        .frame(height: 585)
+        .frame(height: 575)
     }
 }
 
@@ -63,9 +63,9 @@ struct SegmentedStatsPicker: View {
                     selected = index
                 } label: {
                     Image(systemName: icons[index])
-                        .font(.system(size: 29, weight: .medium))
+                        .font(.system(size: 28, weight: .medium))
                         .foregroundStyle(selected == index ? AppTheme.Color.surface : AppTheme.Color.yellow)
-                        .frame(width: 54, height: 54)
+                        .frame(width: 53, height: 53)
                         .background(selected == index ? AppTheme.Color.yellow : AppTheme.Color.surface)
                         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                 }
@@ -100,3 +100,4 @@ struct QRCodeView: View {
         return UIImage(cgImage: cgImage)
     }
 }
+

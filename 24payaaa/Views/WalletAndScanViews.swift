@@ -20,7 +20,7 @@ struct WalletView: View {
                         HStack {
                             RoundedRectangle(cornerRadius: 2)
                                 .fill(Color.cyan)
-                                .frame(width: 86, height: 52)
+                                .frame(width: 84, height: 51)
                                 .overlay(alignment: .bottomTrailing) {
                                     Text("VISA")
                                         .font(.system(size: 9, weight: .black))
@@ -29,9 +29,9 @@ struct WalletView: View {
 
                             VStack(alignment: .leading, spacing: 7) {
                                 Text(card.brand)
-                                    .font(.system(size: 21))
+                                    .font(.system(size: 20.5))
                                 Text("**** **** ******\(card.last4)")
-                                    .font(.system(size: 17))
+                                    .font(.system(size: 16.5))
                                     .foregroundStyle(AppTheme.Color.muted)
                             }
                             Spacer()
@@ -64,12 +64,12 @@ struct WalletView: View {
                             } label: {
                                 HStack {
                                     Image(systemName: "qrcode")
-                                        .font(.system(size: 38))
+                                        .font(.system(size: 36))
                                     VStack(alignment: .leading, spacing: 7) {
                                         Text(ticket.product.city)
-                                            .font(.system(size: 23))
+                                            .font(.system(size: 22.5))
                                         Text(ticket.product.title)
-                                            .font(.system(size: 17))
+                                            .font(.system(size: 16.5))
                                             .foregroundStyle(AppTheme.Color.muted)
                                     }
                                     Spacer()
@@ -94,7 +94,7 @@ struct WalletView: View {
 struct ScanView: View {
     var body: some View {
         VStack(spacing: 22) {
-            Text("Scanează")
+            Text("Scaneaz\u{0103}")
                 .font(AppTheme.Font.hero)
                 .foregroundStyle(.white)
                 .padding(.top, 76)
@@ -102,10 +102,10 @@ struct ScanView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
                     .stroke(AppTheme.Color.yellow, lineWidth: 3)
-                    .frame(width: 255, height: 255)
+                    .frame(width: 250, height: 250)
 
                 Image(systemName: "viewfinder")
-                    .font(.system(size: 120, weight: .light))
+                    .font(.system(size: 116, weight: .light))
                     .foregroundStyle(AppTheme.Color.yellow)
             }
             .padding(.top, 40)

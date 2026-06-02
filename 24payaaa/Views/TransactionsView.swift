@@ -7,26 +7,26 @@ struct TransactionsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Tranzacții")
+            Text("Tranzac\u{021B}ii")
                 .font(AppTheme.Font.hero)
                 .foregroundStyle(.white)
                 .padding(.top, 76)
                 .padding(.leading, 53)
 
             HStack(spacing: 16) {
-                tabText("Istoric plăți", index: 0)
+                tabText("Istoric pl\u{0103}\u{021B}i", index: 0)
                 tabText("Statistici", index: 1)
                 Spacer()
             }
-            .padding(.top, 38)
+            .padding(.top, 37)
             .padding(.horizontal, 27)
 
             if selectedPage == 0 {
                 TransactionHistoryView(transactions: store.transactions)
-                    .padding(.top, 26)
+                    .padding(.top, 25)
             } else {
                 StatisticsView(selectedChart: $selectedChart)
-                    .padding(.top, 26)
+                    .padding(.top, 25)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
@@ -36,9 +36,9 @@ struct TransactionsView: View {
         Button {
             selectedPage = index
         } label: {
-            VStack(alignment: .leading, spacing: 13) {
+            VStack(alignment: .leading, spacing: 12) {
                 Text(title)
-                    .font(.system(size: 23, weight: .regular))
+                    .font(.system(size: 22.5, weight: .regular))
                     .foregroundStyle(selectedPage == index ? AppTheme.Color.yellow : AppTheme.Color.muted)
                 Rectangle()
                     .fill(selectedPage == index ? AppTheme.Color.yellow : .clear)
@@ -55,8 +55,8 @@ struct TransactionHistoryView: View {
 
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 30) {
-                FilterButton(title: "Filtrează tranzacții", icon: "line.3.horizontal.decrease")
+            VStack(alignment: .leading, spacing: 29) {
+                FilterButton(title: "Filtreaz\u{0103} tranzac\u{021B}ii", icon: "line.3.horizontal.decrease")
                     .padding(.horizontal, 27)
 
                 ForEach(Array(groupedMonths.enumerated()), id: \.offset) { _, group in
@@ -95,34 +95,34 @@ struct TransactionRow: View {
         HStack(spacing: 16) {
             VStack(spacing: 1) {
                 Text(day)
-                    .font(.system(size: 22, weight: .regular))
+                    .font(.system(size: 21.5, weight: .regular))
                 Text(month)
-                    .font(.system(size: 24, weight: .regular))
+                    .font(.system(size: 23.5, weight: .regular))
             }
             .foregroundStyle(.white)
-            .frame(width: 66)
+            .frame(width: 64)
 
             Rectangle()
                 .fill(AppTheme.Color.muted)
-                .frame(width: 1, height: 68)
+                .frame(width: 1, height: 66)
 
-            VStack(alignment: .leading, spacing: 9) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text(transaction.city)
-                    .font(.system(size: 25, weight: .regular))
+                    .font(.system(size: 24, weight: .regular))
                     .foregroundStyle(.white)
                 Text(transaction.subtitle)
-                    .font(.system(size: 19, weight: .regular))
+                    .font(.system(size: 18.5, weight: .regular))
                     .foregroundStyle(AppTheme.Color.muted)
             }
 
             Spacer()
 
             Text("\(transaction.amount, specifier: "%.2f") RON")
-                .font(.system(size: 25, weight: .regular))
+                .font(.system(size: 24, weight: .regular))
                 .foregroundStyle(AppTheme.Color.muted)
         }
-        .padding(.horizontal, 18)
-        .frame(height: 103)
+        .padding(.horizontal, 17)
+        .frame(height: 101)
         .background(AppTheme.Color.surface)
         .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
     }
@@ -155,3 +155,4 @@ struct StatisticsView: View {
         }
     }
 }
+

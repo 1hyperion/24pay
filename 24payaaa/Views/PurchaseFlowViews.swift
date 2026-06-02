@@ -5,7 +5,7 @@ struct TicketCatalogView: View {
 
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 25) {
+            VStack(alignment: .leading, spacing: 24) {
                 BackTitle(title: "Transport")
                     .padding(.top, 50)
 
@@ -40,8 +40,8 @@ struct PaymentSummaryView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 25) {
-                    BackTitle(title: "Sumar de plată") {
+                VStack(spacing: 24) {
+                    BackTitle(title: "Sumar de plat\u{0103}") {
                         dismiss()
                     }
                     .padding(.top, 50)
@@ -51,7 +51,7 @@ struct PaymentSummaryView: View {
                     PaymentMethodCard(total: total, card: store.cards.first)
 
                     TermsCard()
-                        .padding(.bottom, 96)
+                        .padding(.bottom, 94)
                 }
                 .padding(.horizontal, 22)
             }
@@ -63,10 +63,10 @@ struct PaymentSummaryView: View {
                     viewModel.purchase(product: product, quantity: quantity)
                 }
             } label: {
-                Text(showingProcessing ? "Se procesează..." : "Plătește")
-                    .font(.system(size: 25, weight: .regular))
+                Text(showingProcessing ? "Se proceseaz\u{0103}..." : "Pl\u{0103}te\u{0219}te")
+                    .font(.system(size: 24.5, weight: .regular))
                     .foregroundStyle(.black)
-                    .frame(height: 78)
+                    .frame(height: 76)
                     .frame(maxWidth: .infinity)
                     .background(AppTheme.Color.yellowSoft)
                     .clipShape(RoundedRectangle(cornerRadius: 9, style: .continuous))
@@ -95,14 +95,14 @@ struct TicketQRView: View {
 
             VStack(spacing: 18) {
                 Text(ticket.product.city)
-                    .font(.system(size: 34, weight: .bold))
+                    .font(.system(size: 33, weight: .bold))
                     .foregroundStyle(.white)
                 Text(ticket.product.title)
-                    .font(.system(size: 23))
+                    .font(.system(size: 22))
                     .foregroundStyle(AppTheme.Color.muted)
 
                 QRCodeView(text: ticket.code)
-                    .frame(width: 254, height: 254)
+                    .frame(width: 250, height: 250)
                     .padding(.top, 6)
 
                 Text(ticket.code)
@@ -110,15 +110,15 @@ struct TicketQRView: View {
                     .foregroundStyle(AppTheme.Color.yellow)
 
                 VStack(spacing: 6) {
-                    Text("Valabil până la")
+                    Text("Valabil p\u{00E2}n\u{0103} la")
                         .font(.system(size: 17))
                         .foregroundStyle(AppTheme.Color.muted)
                     Text(ticket.expiresAt, format: .dateTime.day().month().hour().minute())
-                        .font(.system(size: 24, weight: .semibold))
+                        .font(.system(size: 23.5, weight: .semibold))
                         .foregroundStyle(.white)
                 }
             }
-            .padding(26)
+            .padding(25)
             .frame(maxWidth: .infinity)
             .background(AppTheme.Color.surface)
             .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
@@ -137,7 +137,7 @@ struct BackTitle: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        HStack(spacing: 14) {
+        HStack(spacing: 13) {
             Button {
                 if let action {
                     action()
@@ -146,13 +146,13 @@ struct BackTitle: View {
                 }
             } label: {
                 Image(systemName: "chevron.left")
-                    .font(.system(size: 34, weight: .medium))
+                    .font(.system(size: 33, weight: .medium))
                     .foregroundStyle(.white)
             }
             .buttonStyle(.plain)
 
             Text(title)
-                .font(.system(size: 32, weight: .regular))
+                .font(.system(size: 31, weight: .regular))
                 .foregroundStyle(.white)
             Spacer()
         }
@@ -167,10 +167,10 @@ struct LargeTicketProductCard: View {
             CTPMark()
             VStack(alignment: .leading, spacing: 7) {
                 Text(product.city)
-                    .font(.system(size: 28, weight: .bold))
+                    .font(.system(size: 27, weight: .bold))
                     .foregroundStyle(.black)
                 Text(product.title)
-                    .font(.system(size: 21))
+                    .font(.system(size: 20.5))
                     .foregroundStyle(AppTheme.Color.muted)
                 Text(product.validity)
                     .font(.system(size: 18))
@@ -187,8 +187,8 @@ struct LargeTicketProductCard: View {
                     .foregroundStyle(.black)
             }
         }
-        .padding(25)
-        .frame(height: 160)
+        .padding(24)
+        .frame(height: 158)
         .background(.white)
         .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
     }
@@ -199,18 +199,18 @@ struct TicketSelectorCard: View {
     @Binding var quantity: Int
 
     var body: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: 23) {
             HStack(alignment: .top, spacing: 18) {
                 CTPMark()
                     .padding(.top, 33)
                 VStack(alignment: .leading, spacing: 10) {
                     Text(product.city)
-                        .font(.system(size: 29, weight: .bold))
+                        .font(.system(size: 28.5, weight: .bold))
                         .foregroundStyle(.black)
                     Text(product.title)
                     Text(product.validity)
                 }
-                .font(.system(size: 22, weight: .regular))
+                .font(.system(size: 21.5, weight: .regular))
                 .foregroundStyle(AppTheme.Color.muted)
                 Spacer()
                 Image(systemName: "heart.fill")
@@ -220,9 +220,9 @@ struct TicketSelectorCard: View {
             }
             .padding(.horizontal, 25)
 
-            VStack(spacing: 24) {
-                Text("Selectează număr de călătorii")
-                    .font(.system(size: 25, weight: .regular))
+            VStack(spacing: 23) {
+                Text("Selecteaz\u{0103} num\u{0103}r de c\u{0103}l\u{0103}torii")
+                    .font(.system(size: 24.5, weight: .regular))
                     .foregroundStyle(.black)
 
                 HStack(spacing: 10) {
@@ -231,9 +231,9 @@ struct TicketSelectorCard: View {
                     }
 
                     Text("\(quantity)")
-                        .font(.system(size: 44, weight: .regular))
+                        .font(.system(size: 43, weight: .regular))
                         .foregroundStyle(.black)
-                        .frame(width: 78, height: 65)
+                        .frame(width: 76, height: 64)
                         .overlay {
                             RoundedRectangle(cornerRadius: 10, style: .continuous)
                                 .stroke(AppTheme.Color.background, lineWidth: 2)
@@ -244,7 +244,7 @@ struct TicketSelectorCard: View {
                     }
                 }
             }
-            .padding(.vertical, 24)
+            .padding(.vertical, 23)
             .frame(maxWidth: .infinity)
             .background(AppTheme.Color.surfaceSoft)
             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
@@ -261,7 +261,7 @@ struct TicketSelectorCard: View {
             Text(title)
                 .font(.system(size: 31, weight: .regular))
                 .foregroundStyle(.white)
-                .frame(width: 82, height: 65)
+                .frame(width: 80, height: 64)
                 .background(AppTheme.Color.background)
                 .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
         }
@@ -274,14 +274,14 @@ struct PaymentMethodCard: View {
     let card: PaymentCard?
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 25) {
+        VStack(alignment: .leading, spacing: 24) {
             HStack(alignment: .top) {
-                Text("Vei plăti\nîn total:")
-                    .font(.system(size: 31, weight: .regular))
+                Text("Vei pl\u{0103}ti\n\u{00EE}n total:")
+                    .font(.system(size: 30, weight: .regular))
                     .lineSpacing(14)
                 Spacer()
                 Text("\(total, specifier: "%.2f") RON")
-                    .font(.system(size: 31, weight: .regular))
+                    .font(.system(size: 30, weight: .regular))
                     .padding(.top, 26)
             }
 
@@ -289,8 +289,8 @@ struct PaymentMethodCard: View {
                 .fill(.white.opacity(0.08))
                 .frame(height: 1)
 
-            Text("Metodă de plată")
-                .font(.system(size: 29, weight: .regular))
+            Text("Metod\u{0103} de plat\u{0103}")
+                .font(.system(size: 28, weight: .regular))
 
             HStack(spacing: 19) {
                 RoundedRectangle(cornerRadius: 1)
@@ -309,15 +309,15 @@ struct PaymentMethodCard: View {
 
                 VStack(alignment: .leading, spacing: 10) {
                     Text(card?.brand ?? "CREDIT CARD")
-                        .font(.system(size: 21, weight: .regular))
+                        .font(.system(size: 20.5, weight: .regular))
                     Text("**** **** ******\(card?.last4 ?? "2971")")
-                        .font(.system(size: 17, weight: .regular))
+                        .font(.system(size: 16.5, weight: .regular))
                 }
 
                 Spacer()
 
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 36, weight: .medium))
+                    .font(.system(size: 35, weight: .medium))
                     .foregroundStyle(.white.opacity(0.55))
             }
         }
@@ -331,8 +331,8 @@ struct PaymentMethodCard: View {
 
 struct TermsCard: View {
     var body: some View {
-        Text("Iași - 4 RON Bilet urban valabil 120 de minute.\nNu se restituie contravaloarea titlului de călătorie după cumpărare.")
-            .font(.system(size: 21, weight: .regular))
+        Text("Ia\u{0219}i - 4 RON Bilet urban valabil 120 de minute.\nNu se restituie contravaloarea titlului de c\u{0103}l\u{0103}torie dup\u{0103} cump\u{0103}rare.")
+            .font(.system(size: 20, weight: .regular))
             .foregroundStyle(AppTheme.Color.muted)
             .lineSpacing(8)
             .padding(22)

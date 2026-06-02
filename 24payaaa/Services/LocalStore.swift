@@ -4,7 +4,7 @@ import Combine
 @MainActor
 final class LocalStore: ObservableObject {
     let objectWillChange = ObservableObjectPublisher()
-    
+
     @Published var services: [PayService] = []
     @Published var products: [TicketProduct] = []
     @Published var cards: [PaymentCard] = []
@@ -67,7 +67,7 @@ final class LocalStore: ObservableObject {
 
 extension LocalStore {
     static let seedProducts = [
-        TicketProduct(city: "Iași", title: "Bilet Zona Urbană", validity: "Valabilitate 120 minute", price: 4, isFavorite: true)
+        TicketProduct(city: "Ia\u{0219}i", title: "Bilet Zona Urban\u{0103}", validity: "Valabilitate 120 minute", price: 4, isFavorite: true)
     ]
 
     static let seedCards = [
@@ -78,9 +78,9 @@ extension LocalStore {
         PayService(title: "Transport\npublic", icon: "bus", category: .transport),
         PayService(title: "Parcare", icon: "parkingsign.square", category: .transport, isEnabled: false),
         PayService(title: "Transport\ninterurban", icon: "bus.doubledecker", category: .transport, isEnabled: false),
-        PayService(title: "Plată\nfacturi", icon: "receipt", category: .payments),
-        PayService(title: "Încărcare\nelectronică", icon: "arrow.up.doc", category: .prepay),
-        PayService(title: "Încărcare\ninternațională", icon: "network", category: .prepay),
+        PayService(title: "Plat\u{0103}\nfacturi", icon: "receipt", category: .payments),
+        PayService(title: "\u{00CE}nc\u{0103}rcare\nelectronic\u{0103}", icon: "arrow.up.doc", category: .prepay),
+        PayService(title: "\u{00CE}nc\u{0103}rcare\ninterna\u{021B}ional\u{0103}", icon: "network", category: .prepay),
         PayService(title: "e-SIM", icon: "simcard", category: .prepay),
         PayService(title: "RCA &\ntaxe auto", icon: "checklist", category: .auto),
         PayService(title: "ESX", icon: "face.smiling", category: .auto),
@@ -93,7 +93,8 @@ extension LocalStore {
         let dates: [(Int, Int, Int)] = [(2026, 5, 21), (2026, 4, 7), (2026, 3, 23), (2026, 3, 19)]
         return dates.compactMap { year, month, day in
             let date = calendar.date(from: DateComponents(year: year, month: month, day: day)) ?? Date()
-            return Transaction(date: date, city: "Iasi", subtitle: "Bilet Zona Urbana", amount: 4)
+            return Transaction(date: date, city: "Ia\u{0219}i", subtitle: "Bilet Zona Urban\u{0103}", amount: 4)
         }
     }
 }
+
