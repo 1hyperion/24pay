@@ -24,7 +24,9 @@ final class AppViewModel: ObservableObject {
 
     private func completeAuthentication() {
         selectedTab = .home
-        isAuthenticated = true
+        withAnimation(.easeInOut(duration: 0.45)) {
+            isAuthenticated = true
+        }
     }
 
     func authenticateWithPin() {

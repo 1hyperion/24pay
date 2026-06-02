@@ -9,11 +9,14 @@ struct RootView: View {
                 MainTabView()
                     .environmentObject(viewModel)
                     .environmentObject(viewModel.store)
+                    .transition(.opacity.combined(with: .scale(scale: 1.04)))
             } else {
                 AuthenticationView()
                     .environmentObject(viewModel)
+                    .transition(.opacity)
             }
         }
+        .animation(.easeInOut(duration: 0.45), value: viewModel.isAuthenticated)
     }
 }
 
