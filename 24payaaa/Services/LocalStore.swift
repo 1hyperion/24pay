@@ -8,20 +8,25 @@ final class LocalStore: ObservableObject {
     @Published var transactions: [Transaction]
     @Published var tickets: [Ticket]
 
-    private let encoder = JSONEncoder()
-    private let decoder = JSONDecoder()
+    private let encoder: JSONEncoder
+    private let decoder: JSONDecoder
     private let defaults: UserDefaults
 
     init(defaults: UserDefaults = .standard) {
-        self.defaults = defaults
+        let encoder = JSONEncoder()
+        let decoder = JSONDecoder()
         encoder.dateEncodingStrategy = .iso8601
         decoder.dateDecodingStrategy = .iso8601
 
-        services = Self.load([PayService].self, key: "services", decoder: decoder, defaults: defaults) ?? Self.seedServices
-        products = Self.load([TicketProduct].self, key: "products", decoder: decoder, defaults: defaults) ?? Self.seedProducts
-        cards = Self.load([PaymentCard].self, key: "cards", decoder: decoder, defaults: defaults) ?? Self.seedCards
-        transactions = Self.load([Transaction].self, key: "transactions", decoder: decoder, defaults: defaults) ?? Self.seedTransactions
-        tickets = Self.load([Ticket].self, key: "tickets", decoder: decoder, defaults: defaults) ?? []
+        self.encoder = encoder
+        self.decoder = decoder
+        self.defaults = defaults
+
+        self.services = Self.load([PayService].self, key: "services", decoder: decoder, defaults: defaults) ?? Self.seedServices
+        self.products = Self.load([TicketProduct].self, key: "products", decoder: decoder, defaults: defaults) ?? Self.seedProducts
+        self.cards = Self.load([PaymentCard].self, key: "cards", decoder: decoder, defaults: defaults) ?? Self.seedCards
+        self.transactions = Self.load([Transaction].self, key: "transactions", decoder: decoder, defaults: defaults) ?? Self.seedTransactions
+        self.tickets = Self.load([Ticket].self, key: "tickets", decoder: decoder, defaults: defaults) ?? []
     }
 
     func save() {
