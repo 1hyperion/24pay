@@ -1,9 +1,12 @@
 import Foundation
 import LocalAuthentication
 import SwiftUI
+internal import Combine
 
 @MainActor
 final class AppViewModel: ObservableObject {
+    var objectWillChange: ObservableObjectPublisher
+    
     @Published var selectedTab: AppTab = .home
     @Published var isAuthenticated = false
     @Published var enteredPin = ""
