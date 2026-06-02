@@ -6,23 +6,23 @@ struct ServiceCard: View {
     var body: some View {
         VStack(alignment: .leading) {
             Image(systemName: service.icon)
-                .font(.system(size: 40, weight: .light))
+                .font(.system(size: 36, weight: .light))
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(service.isEnabled ? .white : .white.opacity(0.58))
-                .frame(width: 62, height: 58, alignment: .leading)
+                .frame(width: 58, height: 54, alignment: .leading)
 
-            Spacer(minLength: 20)
+            Spacer(minLength: 18)
 
             Text(service.title)
                 .font(AppTheme.Font.body)
                 .foregroundStyle(service.isEnabled ? .white : .white.opacity(0.6))
-                .lineSpacing(5)
-                .minimumScaleFactor(0.8)
+                .lineSpacing(4)
+                .minimumScaleFactor(0.82)
         }
-        .padding(.leading, 16)
-        .padding(.top, 24)
-        .padding(.bottom, 20)
-        .frame(height: 154)
+        .padding(.leading, 15)
+        .padding(.top, 23)
+        .padding(.bottom, 18)
+        .frame(height: 149)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(service.isEnabled ? AppTheme.Color.surface : AppTheme.Color.surfaceDim.opacity(0.45))
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
@@ -43,7 +43,7 @@ struct CTPMark: View {
                         .offset(x: -19, y: 9)
                         .zIndex(-1)
                 }
-            Text("COMPANIA DE TRANSPORT PUBLIC IAȘI")
+            Text("COMPANIA DE TRANSPORT PUBLIC IA\u{0218}I")
                 .font(.system(size: 4.8, weight: .bold))
                 .foregroundStyle(.black)
         }
@@ -74,12 +74,12 @@ struct FavoriteTicketCard: View {
                 Text("\(product.city) - \(product.title)")
                 Text("- \(product.price, specifier: "%.1f") RON")
             }
-            .font(.system(size: 18, weight: .regular))
+            .font(.system(size: 17.5, weight: .regular))
             .foregroundStyle(.black)
             .padding(.horizontal, 16)
             .padding(.bottom, 28)
         }
-        .frame(width: 217, height: 176)
+        .frame(width: 217, height: 174)
         .background {
             VStack(spacing: 0) {
                 Color.white
@@ -98,11 +98,11 @@ struct FilterButton: View {
         HStack(spacing: 10) {
             if let icon {
                 Image(systemName: icon)
-                    .font(.system(size: 20, weight: .bold))
+                    .font(.system(size: 19, weight: .bold))
                     .foregroundStyle(AppTheme.Color.yellow)
             }
             Text(title)
-                .font(.system(size: 25, weight: .bold))
+                .font(.system(size: 24, weight: .bold))
                 .foregroundStyle(.white)
         }
         .frame(height: 53)
@@ -127,7 +127,7 @@ struct SectionTitleRow: View {
             Spacer()
             if let action {
                 Text(action)
-                    .font(.system(size: 20, weight: .regular))
+                    .font(.system(size: 19, weight: .regular))
                     .foregroundStyle(AppTheme.Color.yellowSoft)
             }
         }

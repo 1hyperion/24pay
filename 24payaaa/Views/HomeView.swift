@@ -4,11 +4,11 @@ struct HomeView: View {
     @EnvironmentObject private var store: LocalStore
     @EnvironmentObject private var viewModel: AppViewModel
 
-    private let columns = Array(repeating: GridItem(.flexible(), spacing: 22), count: 3)
+    private let columns = Array(repeating: GridItem(.flexible(), spacing: 21), count: 3)
 
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 27) {
+            VStack(alignment: .leading, spacing: 25) {
                 AppHeader()
                     .padding(.top, 31)
 
@@ -29,12 +29,12 @@ struct HomeView: View {
 
                 SectionTitleRow(title: "Servicii", action: "Vezi toate serviciile")
                     .padding(.horizontal, 11)
-                    .padding(.top, 10)
+                    .padding(.top, 8)
                     .onTapGesture {
                         viewModel.selectedTab = .services
                     }
 
-                LazyVGrid(columns: columns, spacing: 22) {
+                LazyVGrid(columns: columns, spacing: 21) {
                     ForEach(store.services.prefix(8)) { service in
                         serviceLink(service)
                     }
@@ -45,7 +45,7 @@ struct HomeView: View {
                     .font(AppTheme.Font.title)
                     .foregroundStyle(.white)
                     .padding(.horizontal, 11)
-                    .padding(.top, 12)
+                    .padding(.top, 10)
 
                 PartnerBanner()
                     .padding(.horizontal, 11)
@@ -80,20 +80,20 @@ struct PartnerBanner: View {
                 .frame(height: 120)
                 .offset(x: 80, y: -15)
 
-            VStack(alignment: .leading, spacing: 18) {
+            VStack(alignment: .leading, spacing: 17) {
                 BrandLogo(payColor: AppTheme.Color.surface)
-                    .scaleEffect(0.75, anchor: .leading)
+                    .scaleEffect(0.72, anchor: .leading)
                     .padding(.leading, 23)
 
-                Text("Și tu poți câștiga!")
-                    .font(.system(size: 28, weight: .black))
+                Text("\u{0218}i tu po\u{021B}i c\u{00E2}\u{0219}tiga!")
+                    .font(.system(size: 27, weight: .black))
                     .foregroundStyle(.white)
                     .padding(.vertical, 15)
-                    .padding(.horizontal, 26)
+                    .padding(.horizontal, 25)
                     .background(AppTheme.Color.surface)
                     .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
 
-                Text("Detalii pe 24pay.ro\nla secțiunea Media")
+                Text("Detalii pe 24pay.ro\nla sec\u{021B}iunea Media")
                     .font(.system(size: 15, weight: .black))
                     .foregroundStyle(AppTheme.Color.surface)
                     .padding(.leading, 23)
@@ -113,7 +113,7 @@ struct PartnerBanner: View {
             }
             .offset(x: 263, y: 18)
         }
-        .frame(height: 191)
+        .frame(height: 188)
         .clipped()
     }
 }
@@ -129,3 +129,4 @@ struct WaveLines: Shape {
         return path
     }
 }
+

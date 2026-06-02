@@ -11,10 +11,10 @@ enum AppTab: String, CaseIterable, Identifiable, Codable {
 
     var title: String {
         switch self {
-        case .home: "Acasă"
+        case .home: "Acas\u{0103}"
         case .services: "Servicii"
-        case .scan: "Scanează"
-        case .transactions: "Tranzacții"
+        case .scan: "Scaneaz\u{0103}"
+        case .transactions: "Tranzac\u{021B}ii"
         case .wallet: "Portofel"
         }
     }
@@ -32,7 +32,7 @@ enum AppTab: String, CaseIterable, Identifiable, Codable {
 
 enum ServiceCategory: String, Codable, CaseIterable, Identifiable {
     case transport = "Transport"
-    case payments = "Plăți"
+    case payments = "Pl\u{0103}\u{021B}i"
     case prepay = "PrePay"
     case auto = "RCA & taxe auto"
 

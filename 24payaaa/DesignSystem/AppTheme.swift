@@ -17,18 +17,18 @@ enum AppTheme {
     }
 
     enum Font {
-        static let hero = SwiftUI.Font.system(size: 34, weight: .bold, design: .default)
-        static let title = SwiftUI.Font.system(size: 31, weight: .regular, design: .default)
-        static let large = SwiftUI.Font.system(size: 26, weight: .regular, design: .default)
-        static let cardTitle = SwiftUI.Font.system(size: 24, weight: .regular, design: .default)
-        static let body = SwiftUI.Font.system(size: 20, weight: .regular, design: .default)
-        static let bodyBold = SwiftUI.Font.system(size: 20, weight: .bold, design: .default)
-        static let caption = SwiftUI.Font.system(size: 15, weight: .semibold, design: .default)
+        static let hero = SwiftUI.Font.system(size: 33, weight: .bold, design: .default)
+        static let title = SwiftUI.Font.system(size: 28, weight: .regular, design: .default)
+        static let large = SwiftUI.Font.system(size: 25, weight: .regular, design: .default)
+        static let cardTitle = SwiftUI.Font.system(size: 22, weight: .regular, design: .default)
+        static let body = SwiftUI.Font.system(size: 19, weight: .regular, design: .default)
+        static let bodyBold = SwiftUI.Font.system(size: 19, weight: .bold, design: .default)
+        static let caption = SwiftUI.Font.system(size: 14, weight: .semibold, design: .default)
     }
 
     enum Layout {
         static let horizontal: CGFloat = 22
-        static let tabBarHeight: CGFloat = 116
+        static let tabBarHeight: CGFloat = 112
         static let corner: CGFloat = 16
         static let cardCorner: CGFloat = 28
     }
@@ -41,4 +41,3 @@ extension View {
             .preferredColorScheme(.dark)
     }
 }
-

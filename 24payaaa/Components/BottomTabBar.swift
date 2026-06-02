@@ -11,7 +11,7 @@ struct BottomTabBar: View {
             tab(.transactions)
             tab(.wallet)
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 14)
         .padding(.top, 10)
         .frame(height: AppTheme.Layout.tabBarHeight)
         .frame(maxWidth: .infinity)
@@ -25,16 +25,14 @@ struct BottomTabBar: View {
 
     private func tab(_ tab: AppTab) -> some View {
         Button {
-            withAnimation(.spring(response: 0.3, dampingFraction: 0.85)) {
-                selectedTab = tab
-            }
+            selectedTab = tab
         } label: {
             VStack(spacing: 5) {
                 Image(systemName: tab.icon)
-                    .font(.system(size: 27, weight: .medium))
-                    .frame(width: 34, height: 31)
+                    .font(.system(size: 25, weight: .medium))
+                    .frame(width: 32, height: 29)
                 Text(tab.title)
-                    .font(.system(size: 14, weight: .bold))
+                    .font(.system(size: 13.5, weight: .bold))
                     .lineLimit(1)
                     .minimumScaleFactor(0.82)
             }
@@ -47,20 +45,18 @@ struct BottomTabBar: View {
 
     private var scanTab: some View {
         Button {
-            withAnimation(.spring(response: 0.3, dampingFraction: 0.85)) {
-                selectedTab = .scan
-            }
+            selectedTab = .scan
         } label: {
             VStack(spacing: 3) {
                 Image(systemName: "viewfinder")
-                    .font(.system(size: 30, weight: .bold))
-                Text("Scanează")
-                    .font(.system(size: 16, weight: .black))
+                    .font(.system(size: 28, weight: .bold))
+                Text("Scaneaz\u{0103}")
+                    .font(.system(size: 15.5, weight: .black))
             }
             .foregroundStyle(AppTheme.Color.background)
-            .frame(width: 86, height: 86)
+            .frame(width: 82, height: 82)
             .background(Circle().fill(AppTheme.Color.yellow))
-            .offset(y: -20)
+            .offset(y: -18)
         }
         .buttonStyle(.plain)
         .frame(maxWidth: .infinity)

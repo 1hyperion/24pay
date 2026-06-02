@@ -13,10 +13,10 @@ struct BrandLogo: View {
                     .foregroundStyle(AppTheme.Color.yellow)
                     .rotationEffect(.degrees(-8))
             }
-            .frame(width: 44, height: 44)
+            .frame(width: 42, height: 42)
 
             Text("pay")
-                .font(.system(size: 27, weight: .black, design: .rounded))
+                .font(.system(size: 26, weight: .black, design: .rounded))
                 .italic()
                 .foregroundStyle(payColor)
         }
@@ -31,10 +31,10 @@ struct TopIconButton: View {
         ZStack(alignment: .topTrailing) {
             Circle()
                 .fill(AppTheme.Color.surface)
-                .frame(width: 58, height: 58)
+                .frame(width: 56, height: 56)
                 .overlay {
                     Image(systemName: icon)
-                        .font(.system(size: 26, weight: .regular))
+                        .font(.system(size: 25, weight: .regular))
                         .foregroundStyle(.white)
                 }
 
@@ -53,7 +53,7 @@ struct AppHeader: View {
         HStack {
             BrandLogo()
             Spacer()
-            HStack(spacing: 8) {
+            HStack(spacing: 7) {
                 TopIconButton(icon: "bell", hasBadge: true)
                 TopIconButton(icon: "gearshape")
                 TopIconButton(icon: "person")
@@ -62,3 +62,4 @@ struct AppHeader: View {
         .padding(.horizontal, 11)
     }
 }
+
