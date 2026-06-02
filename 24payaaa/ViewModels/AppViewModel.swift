@@ -14,7 +14,11 @@ final class AppViewModel: ObservableObject {
 
     let store: LocalStore
 
-    init(store: LocalStore = LocalStore()) {
+    init() {
+        self.store = LocalStore()
+    }
+
+    init(store: LocalStore) {
         self.store = store
     }
 
@@ -38,7 +42,7 @@ final class AppViewModel: ObservableObject {
         var error: NSError?
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Autentificare 24pay") { [weak self] success, _ in
-                Task { @MainActor in
+                Task { @MainActor [weak self, success] in
                     if success {
                         withAnimation(.spring(response: 0.35, dampingFraction: 0.82)) {
                             self?.isAuthenticated = true
@@ -57,4 +61,3 @@ final class AppViewModel: ObservableObject {
         selectedTicket = store.purchase(product: product, quantity: quantity)
     }
 }
-
